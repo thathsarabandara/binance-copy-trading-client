@@ -72,9 +72,9 @@ export const Register: React.FC = () => {
 
   return (
     <AuthLayout image={authImage}>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Account</h1>
-        <p className="text-gray-600">Join LK Trader community today</p>
+      <div className="mb-8 text-center">
+        <h1 className="text-3xl font-bold text-gray-900 mb-2">Create Follower Account</h1>
+        <p className="text-gray-600">Join LK Trader as a follower community today to connect with traders and stay updated</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-4">
