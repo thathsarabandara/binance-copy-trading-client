@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import Home from './pages/common/Home';
 import { Login as TraderLogin } from './pages/trader/auth/Login';
 import { Register as TraderRegister } from './pages/trader/auth/Register';
 import { OtpVerify as TraderOtpVerify } from './pages/trader/auth/OtpVerify';
@@ -17,8 +18,8 @@ function App() {
     <Provider store={store}>
       <Router>
         <Routes>
-          {/* Redirect root to trader login by default */}
-          <Route path="/" element={<Navigate to="/trader/auth/login" replace />} />
+          {/* Home page */}
+          <Route path="/" element={<Home />} />
 
           {/* Trader Routes */}
           <Route path="/trader">
