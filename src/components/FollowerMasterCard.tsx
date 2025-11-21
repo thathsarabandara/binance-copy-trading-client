@@ -122,7 +122,7 @@ const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, na
                 </div>
                 <button
                     onClick={() => {
-                        Navigate(`follower/marketplace/${id}`);
+                        Navigate(`/follower/marketplace/${id}`);
                     }}
                     className="w-full mt-4 px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors"
                 >
