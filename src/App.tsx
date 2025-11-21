@@ -12,6 +12,17 @@ import { Register as FollowerRegister } from './pages/follower/auth/Register';
 import { OtpVerify as FollowerOtpVerify } from './pages/follower/auth/OtpVerify';
 import { ForgotPassword as FollowerForgotPassword } from './pages/follower/auth/ForgotPassword';
 import { ResetPassword as FollowerResetPassword } from './pages/follower/auth/ResetPassword';
+import {
+  Dashboard,
+  LiveTradesMonitor,
+  TradeHistory,
+  FollowersManagement,
+  CopyTradingSettings,
+  EarningsPayouts,
+  APIConnection,
+  Notifications,
+  HelpSupport,
+} from './pages/trader/pages';
 
 function App() {
   return (
@@ -23,6 +34,7 @@ function App() {
 
           {/* Trader Routes */}
           <Route path="/trader">
+            {/* Trader Auth Routes */}
             <Route path="auth">
               <Route path="login" element={<TraderLogin />} />
               <Route path="register" element={<TraderRegister />} />
@@ -30,6 +42,16 @@ function App() {
               <Route path="forgot-password" element={<TraderForgotPassword />} />
               <Route path="reset-password" element={<TraderResetPassword />} />
             </Route>
+            {/* Trader Dashboard Routes */}
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="live-trades" element={<LiveTradesMonitor />} />
+            <Route path="history" element={<TradeHistory />} />
+            <Route path="followers" element={<FollowersManagement />} />
+            <Route path="settings" element={<CopyTradingSettings />} />
+            <Route path="earnings" element={<EarningsPayouts />} />
+            <Route path="api" element={<APIConnection />} />
+            <Route path="notifications" element={<Notifications />} />
+            <Route path="help" element={<HelpSupport />} />
           </Route>
 
           {/* Follower Routes */}
