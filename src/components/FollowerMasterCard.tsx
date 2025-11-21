@@ -18,7 +18,6 @@ interface FollowerMasterCardProps {
 }
 
 const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, name, isVerified, rating, numberofTrades, profitPercentage, winRate, riskScore,  monthlyReturn, followersCount, minInvestment, handleViewProfile }) => {
-    // normalize values to avoid printing "undefined"
     const profitPercentageValue = typeof profitPercentage === 'number' ? profitPercentage : 0;
     const win = typeof winRate === 'number' ? winRate : 0;
     const risk = typeof riskScore === 'number' ? riskScore : 0;
@@ -41,7 +40,6 @@ const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, na
                 <div className="flex items-start justify-between mb-4">
                     <div className="w-16 h-16 bg-gradient-to-br from-yellow-400 to-yellow-600 rounded-full flex items-center justify-center shadow-lg overflow-hidden">
                         {imgPath ? (
-                            // eslint-disable-next-line @next/next/no-img-element
                             <img src={imgPath} alt={name} className="w-full h-full object-cover" />
                         ) : (
                             <span className="text-white font-bold text-xl">{name?.charAt(0)?.toUpperCase() ?? '?'}</span>
