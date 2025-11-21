@@ -1,0 +1,9 @@
+export { default as Dashboard } from './Dashboard';
+export { default as LiveTradesMonitor } from './LiveTradesMonitor';
+export { default as TradeHistory } from './TradeHistory';
+export { default as FollowersManagement } from './FollowersManagement';
+export { default as CopyTradingSettings } from './CopyTradingSettings';
+export { default as EarningsPayouts } from './EarningsPayouts';
+export { default as APIConnection } from './APIConnection';
+export { default as Notifications } from './Notifications';
+export { default as HelpSupport } from './HelpSupport';
