@@ -102,23 +102,21 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed: controlledCollapsed, onTog
           ))}
         </ul>
       </nav>
+      {/* Toggle Button */}
+      <button
+        onClick={handleToggle}
+        className="absolute -right-3 top-24 w-6 h-6 bg-yellow-500 hover:bg-yellow-600 rounded-full flex items-center justify-center shadow-lg transition-colors"
+      >
+      {collapsed ? (
+        <ChevronRight className="w-4 h-4 text-white" />
+        ) : (
+        <ChevronLeft className="w-4 h-4 text-white" />
+        )}
+      </button>
 
       {/* Footer */}
       <div className="border-t border-gray-200 p-3">
-        <button
-          onClick={handleToggle}
-          className="w-full flex items-center justify-center gap-3 px-3 py-3 rounded-lg text-gray-700 hover:bg-gray-50 transition-colors"
-          title={collapsed ? 'Expand sidebar' : 'Collapse sidebar'}
-        >
-          {collapsed ? (
-            <ChevronRight size={20} className="text-gray-500" />
-          ) : (
-            <>
-              <ChevronLeft size={20} className="text-gray-500" />
-              <span className="text-sm">Collapse</span>
-            </>
-          )}
-        </button>
+        
         <Link
           to="/trader/auth/login"
           className="w-full flex items-center justify-center gap-3 px-3 py-3 rounded-lg text-red-600 hover:bg-red-50 transition-colors mt-2"
