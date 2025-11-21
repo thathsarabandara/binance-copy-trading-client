@@ -1,35 +1,59 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+import Home from './pages/common/Home';
+import { Login as TraderLogin } from './pages/trader/auth/Login';
+import { Register as TraderRegister } from './pages/trader/auth/Register';
+import { OtpVerify as TraderOtpVerify } from './pages/trader/auth/OtpVerify';
+import { ForgotPassword as TraderForgotPassword } from './pages/trader/auth/ForgotPassword';
+import { ResetPassword as TraderResetPassword } from './pages/trader/auth/ResetPassword';
+import { Login as FollowerLogin } from './pages/follower/auth/Login';
+import { Register as FollowerRegister } from './pages/follower/auth/Register';
+import { OtpVerify as FollowerOtpVerify } from './pages/follower/auth/OtpVerify';
+import { ForgotPassword as FollowerForgotPassword } from './pages/follower/auth/ForgotPassword';
+import { ResetPassword as FollowerResetPassword } from './pages/follower/auth/ResetPassword';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Provider store={store}>
+      <Router>
+        <Routes>
+          {/* Home page */}
+          <Route path="/" element={<Home />} />
+
+          {/* Trader Routes */}
+          <Route path="/trader">
+            <Route path="auth">
+              <Route path="login" element={<TraderLogin />} />
+              <Route path="register" element={<TraderRegister />} />
+              <Route path="otp-verify" element={<TraderOtpVerify />} />
+              <Route path="forgot-password" element={<TraderForgotPassword />} />
+              <Route path="reset-password" element={<TraderResetPassword />} />
+            </Route>
+          </Route>
+
+          {/* Follower Routes */}
+          <Route path="/follower">
+            <Route path="auth">
+              <Route path="login" element={<FollowerLogin />} />
+              <Route path="register" element={<FollowerRegister />} />
+              <Route path="otp-verify" element={<FollowerOtpVerify />} />
+              <Route path="forgot-password" element={<FollowerForgotPassword />} />
+              <Route path="reset-password" element={<FollowerResetPassword />} />
+            </Route>
+          </Route>
+
+          {/* Admin Routes - Placeholder */}
+          <Route path="/admin">
+            {/* Admin routes will go here */}
+          </Route>
+
+          {/* Fallback route - redirect to trader login */}
+          <Route path="*" element={<Navigate to="/trader/auth/login" replace />} />
+        </Routes>
+      </Router>
+    </Provider>
+  );
 }
 
-export default App
+export default App;
