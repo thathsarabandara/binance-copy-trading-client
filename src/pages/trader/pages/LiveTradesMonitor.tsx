@@ -7,6 +7,7 @@ import type { Position } from '../../../types';
 import { FaChartLine, FaCircle, FaDollarSign } from 'react-icons/fa';
 import { BiLineChart, BiLineChartDown } from 'react-icons/bi';
 import { CiCircleAlert } from 'react-icons/ci';
+import { FiRefreshCcw } from 'react-icons/fi';
 
 const LiveTradesMonitor: React.FC = () => {
   const [positions, setPositions] = useState<Position[]>([]);
@@ -229,7 +230,7 @@ const LiveTradesMonitor: React.FC = () => {
         {/* Auto-refresh Notice */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-500">
-            🔄 Auto-refreshing every 5 seconds • Last updated: {new Date().toLocaleTimeString()}
+            <FiRefreshCcw /> Auto-refreshing every 5 seconds • Last updated: {new Date().toLocaleTimeString()}
           </p>
         </div>
         </div>
