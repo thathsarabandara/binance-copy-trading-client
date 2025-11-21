@@ -1,5 +1,6 @@
 import { CheckCircle, Shield, Star, TrendingUp, Users, DollarSign } from 'lucide-react';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface FollowerMasterCardProps {
     id: string;
@@ -14,10 +15,10 @@ interface FollowerMasterCardProps {
     monthlyReturn?: number;
     followersCount: number;
     minInvestment?: number;
-    handleViewProfile?: (id: string) => void;
 }
 
-const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, name, isVerified, rating, numberofTrades, profitPercentage, winRate, riskScore,  monthlyReturn, followersCount, minInvestment, handleViewProfile }) => {
+const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, name, isVerified, rating, numberofTrades, profitPercentage, winRate, riskScore,  monthlyReturn, followersCount, minInvestment }) => {
+    const Navigate = useNavigate();
     const profitPercentageValue = typeof profitPercentage === 'number' ? profitPercentage : 0;
     const win = typeof winRate === 'number' ? winRate : 0;
     const risk = typeof riskScore === 'number' ? riskScore : 0;
@@ -33,7 +34,6 @@ const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, na
     return (
         <div
             className="bg-white rounded-xl border border-gray-200 hover:border-yellow-400 hover:shadow-lg transition-all cursor-pointer overflow-hidden group"
-            onClick={() => handleViewProfile && handleViewProfile(id)}
         >
             {/* Header */}
             <div className="bg-gradient-to-br from-yellow-50 to-yellow-100 p-6 relative">
@@ -120,6 +120,14 @@ const FollowerMasterCard: React.FC<FollowerMasterCardProps> = ({ id, imgPath, na
                         </span>
                     </div>
                 </div>
+                <button
+                    onClick={() => {
+                        Navigate(`follower/marketplace/${id}`);
+                    }}
+                    className="w-full mt-4 px-4 py-2 bg-yellow-500 text-white font-semibold rounded-lg hover:bg-yellow-600 transition-colors"
+                >
+                    View Profile
+                </button>
             </div>
         </div>
     );

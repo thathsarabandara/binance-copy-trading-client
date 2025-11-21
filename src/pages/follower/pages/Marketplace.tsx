@@ -7,7 +7,6 @@ import {
   Shield,
   ChevronDown,
 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
 import FollowrMarketPlaceStat from '../../../components/FollowrMarketPlaceStat';
 import { FaChartLine } from 'react-icons/fa';
 import { MdVerified } from 'react-icons/md';
@@ -26,16 +25,13 @@ interface MasterTrader {
   rating: number;
   avatar: string;
   totalTrades: number;
-  handleViewProfile?: () => void;
 }
 
 const Marketplace: React.FC = () => {
-  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState('');
   const [showFilters, setShowFilters] = useState(false);
   const [sortBy, setSortBy] = useState<'profit' | 'winRate' | 'risk' | 'followers'>('profit');
 
-  // Mock data
   const masterTraders: MasterTrader[] = [
     {
       id: '1',
@@ -120,13 +116,8 @@ const Marketplace: React.FC = () => {
       rating: 4.6,
       avatar: 'SG',
       totalTrades: 892,
-      handleViewProfile: () => handleViewProfile('6'),
     },
   ];
-
-  const handleViewProfile = (traderId: string) => {
-    navigate(`/follower/marketplace/${traderId}`);
-  };
 
   return (
     <FollowerLayout>
