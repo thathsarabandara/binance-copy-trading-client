@@ -2,7 +2,7 @@ import React from 'react';
 
 interface AdminTradeStatCardProps {
     title: string;
-    value: number;
+    value: number | string;
     subtext: string;
     icon: React.ReactNode;
     
