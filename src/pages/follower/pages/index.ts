@@ -1,0 +1,10 @@
+export { default as FollowerDashboard } from './Dashboard';
+export { default as Marketplace } from './Marketplace';
+export { default as MasterTraderProfile } from './MasterTraderProfile';
+export { default as CopySettings } from './CopySettings';
+export { default as ActiveTrades } from './ActiveTrades';
+export { default as TradeHistory } from './TradeHistory';
+export { default as MyTraders } from './MyTraders';
+export { default as WalletBalance } from './WalletBalance';
+export { default as Notifications } from './Notifications';
+export { default as AccountSettings } from './AccountSettings';
