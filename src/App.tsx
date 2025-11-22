@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import Home from './pages/common/Home';
@@ -23,6 +23,33 @@ import {
   Notifications,
   HelpSupport,
 } from './pages/trader/pages';
+import {
+  FollowerDashboard,
+  Marketplace,
+  MasterTraderProfile,
+  CopySettings,
+  ActiveTrades,
+  TradeHistory as FollowerTradeHistory,
+  MyTraders,
+  WalletBalance,
+  Notifications as FollowerNotifications,
+  AccountSettings,
+} from './pages/follower/pages';
+import {
+  Dashboard as AdminDashboard,
+  MasterTraders,
+  Followers,
+  CopyMonitoring,
+  TradeHistory as AdminTradeHistory,
+  Payouts,
+  APIManagement,
+  KYCVerification,
+  Subscriptions,
+  Support,
+  Settings,
+  AdminAccounts,
+} from './pages/admin/pages';
+import AdminLayout from './layouts/AdminLayout';
 
 function App() {
   return (
@@ -63,15 +90,34 @@ function App() {
               <Route path="forgot-password" element={<FollowerForgotPassword />} />
               <Route path="reset-password" element={<FollowerResetPassword />} />
             </Route>
+            {/* Follower Dashboard Routes */}
+            <Route path="dashboard" element={<FollowerDashboard />} />
+            <Route path="marketplace" element={<Marketplace />} />
+            <Route path="marketplace/:traderId" element={<MasterTraderProfile />} />
+            <Route path="copy-settings" element={<CopySettings />} />
+            <Route path="active-trades" element={<ActiveTrades />} />
+            <Route path="trade-history" element={<FollowerTradeHistory />} />
+            <Route path="my-traders" element={<MyTraders />} />
+            <Route path="wallet" element={<WalletBalance />} />
+            <Route path="notifications" element={<FollowerNotifications />} />
+            <Route path="settings" element={<AccountSettings />} />
           </Route>
 
-          {/* Admin Routes - Placeholder */}
-          <Route path="/admin">
-            {/* Admin routes will go here */}
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="master-traders" element={<MasterTraders />} />
+            <Route path="followers" element={<Followers />} />
+            <Route path="copy-monitoring" element={<CopyMonitoring />} />
+            <Route path="trade-history" element={<AdminTradeHistory />} />
+            <Route path="payouts" element={<Payouts />} />
+            <Route path="api-management" element={<APIManagement />} />
+            <Route path="kyc" element={<KYCVerification />} />
+            <Route path="subscriptions" element={<Subscriptions />} />
+            <Route path="support" element={<Support />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="accounts" element={<AdminAccounts />} />
           </Route>
-
-          {/* Fallback route - redirect to trader login */}
-          <Route path="*" element={<Navigate to="/trader/auth/login" replace />} />
         </Routes>
       </Router>
     </Provider>

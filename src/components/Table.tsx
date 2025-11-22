@@ -78,7 +78,7 @@ export function Table<T extends Record<string, any>>({
           Showing{' '}
           <span className="font-medium text-gray-800">{start}</span> to{' '}
           <span className="font-medium text-gray-800">{end}</span> of{' '}
-          <span className="font-medium text-gray-800">{total.toLocaleString()}</span> followers
+          <span className="font-medium text-gray-800">{total.toLocaleString()}</span> Pages
         </div>
 
         <nav className="flex items-center space-x-2" aria-label="Pagination">
