@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import { FileCheck, Search, CheckCircle, XCircle, Eye, Clock } from 'lucide-react';
 import type { KYCDocument } from '../../../types/admin';
+import FollowrMarketPlaceStat from '../../../components/FollowrMarketPlaceStat';
+import { Table } from '../../../components/Table';
 
 const KYCVerification: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterStatus, setFilterStatus] = useState('all');
   const [selectedDocument, setSelectedDocument] = useState<KYCDocument | null>(null);
   const [showModal, setShowModal] = useState(false);
-
-  // Mock data
   const documents: KYCDocument[] = [
     {
       id: '1',
@@ -90,118 +90,95 @@ const KYCVerification: React.FC = () => {
 
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-600">Pending Review</span>
-              <Clock className="w-5 h-5 text-yellow-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">12</h3>
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-600">Approved</span>
-              <CheckCircle className="w-5 h-5 text-green-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-green-600">156</h3>
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-600">Rejected</span>
-              <XCircle className="w-5 h-5 text-red-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-red-600">8</h3>
-          </div>
-          <div className="bg-white rounded-xl shadow-sm border border-gray-100 p-6">
-            <div className="flex items-center justify-between mb-2">
-              <span className="text-sm text-gray-600">Total Submissions</span>
-              <FileCheck className="w-5 h-5 text-yellow-600" />
-            </div>
-            <h3 className="text-2xl font-bold text-gray-900">176</h3>
-          </div>
+          <FollowrMarketPlaceStat label='Pending Review' value={"12"} color='yellow' icon={<Clock className="w-5 h-5 text-yellow-600" />}   />
+          <FollowrMarketPlaceStat label='Approved' value={"156"} color='green' icon={<CheckCircle className="w-5 h-5 text-green-600" />}   />
+          <FollowrMarketPlaceStat label='Rejected' value={"8"} color='red' icon={<XCircle className="w-5 h-5 text-red-600" />}   />
+          <FollowrMarketPlaceStat label='Total Submissions' value={"176"} color='gray' icon={<FileCheck className="w-5 h-5 text-yellow-600" />}   />
         </div>
 
         {/* Documents Table */}
         <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full">
-              <thead className="bg-gray-50 border-b border-gray-200">
-                <tr>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    User
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    Document Type
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    Document Number
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    Submitted
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    Status
-                  </th>
-                  <th className="text-left px-6 py-4 text-sm font-semibold text-gray-700">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200">
-                {documents.map((doc) => (
-                  <tr key={doc.id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4">
+            <Table
+                columns={[
+                  {
+                    key: 'user',
+                    header: 'User',
+                    render: (row: KYCDocument) => (
                       <div className="flex flex-col">
-                        <span className="font-medium text-gray-900">{doc.userName}</span>
-                        <span className="text-sm text-gray-500">{doc.userEmail}</span>
+                        <span className="font-medium text-gray-900">{row.userName}</span> 
+                        <span className="text-sm text-gray-500">{row.userEmail}</span>
                       </div>
-                    </td>
-                    <td className="px-6 py-4">
+                    ),
+                  },
+                  {
+                    key: 'documentType',
+                    header: 'Document Type',
+                    render: (row: KYCDocument) => (
                       <span className="text-sm text-gray-900 capitalize">
-                        {doc.documentType.replace('_', ' ')}
+                        {row.documentType.replace('_', ' ')}
                       </span>
-                    </td>
-                    <td className="px-6 py-4">
+                    ),
+                  },
+                  {
+                    key: 'documentNumber',
+                    header: 'Document Number',
+                    render: (row: KYCDocument) => (
                       <code className="text-sm font-mono text-gray-900">
-                        {doc.documentNumber}
+                        {row.documentNumber}
                       </code>
-                    </td>
-                    <td className="px-6 py-4 text-sm text-gray-600">{doc.submittedAt}</td>
-                    <td className="px-6 py-4">
+                    ),
+                  },
+                  {
+                    key: 'submittedAt',
+                    header: 'Submitted',
+                    render: (row: KYCDocument) => (
+                      <span className="text-sm text-gray-600">{row.submittedAt}</span>
+                    ),
+                  },
+                  {
+                    key: 'status',
+                    header: 'Status',
+                    render: (row: KYCDocument) => (
                       <span
                         className={`inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium ${
-                          doc.status === 'pending'
+                          row.status === 'pending'
                             ? 'bg-yellow-100 text-yellow-700'
-                            : doc.status === 'approved'
+                            : row.status === 'approved'
                             ? 'bg-green-100 text-green-700'
                             : 'bg-red-100 text-red-700'
                         }`}
                       >
-                        {doc.status === 'approved' && <CheckCircle className="w-3 h-3" />}
-                        {doc.status === 'rejected' && <XCircle className="w-3 h-3" />}
-                        {doc.status === 'pending' && <Clock className="w-3 h-3" />}
-                        {doc.status}
+                        {row.status === 'approved' && <CheckCircle className="w-3 h-3" />}
+                        {row.status === 'rejected' && <XCircle className="w-3 h-3" />}
+                        {row.status === 'pending' && <Clock className="w-3 h-3" />}
+                        {row.status}
                       </span>
-                    </td>
-                    <td className="px-6 py-4">
+                    ),
+                  },
+                  {
+                    key: 'actions',
+                    header: 'Actions',
+                    render: (row: KYCDocument) => (
                       <div className="flex items-center gap-2">
                         <button
-                          onClick={() => handleViewDetails(doc)}
+                          onClick={() => handleViewDetails(row)}
                           className="px-4 py-2 border border-gray-200 hover:bg-gray-50 rounded-lg transition-colors text-sm font-medium flex items-center gap-1"
                         >
                           <Eye className="w-4 h-4" />
                           View
                         </button>
-                        {doc.status === 'pending' && (
+                        {row.status === 'pending' && (
                           <>
                             <button
-                              onClick={() => handleApprove(doc.id)}
+                              onClick={() => handleApprove(row.id)}
                               className="px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors text-sm font-medium flex items-center gap-1"
                             >
                               <CheckCircle className="w-4 h-4" />
                               Approve
                             </button>
                             <button
-                              onClick={() => handleReject(doc.id)}
+                              onClick={() => handleReject(row.id)}
                               className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg transition-colors text-sm font-medium flex items-center gap-1"
                             >
                               <XCircle className="w-4 h-4" />
@@ -210,27 +187,11 @@ const KYCVerification: React.FC = () => {
                           </>
                         )}
                       </div>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-
-          {/* Pagination */}
-          <div className="flex items-center justify-between px-6 py-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600">Showing 1 to 10 of 176 documents</p>
-            <div className="flex gap-2">
-              <button className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
-                Previous
-              </button>
-              <button className="px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors text-sm font-medium">
-                1
-              </button>
-              <button className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors text-sm font-medium">
-                Next
-              </button>
-            </div>
+                    ),
+                  },
+                ]}
+                data={documents}
+              />
           </div>
         </div>
       </div>
